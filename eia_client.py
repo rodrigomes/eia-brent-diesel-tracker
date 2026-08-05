@@ -28,8 +28,8 @@ class EIAClient:
 
         Séries comuns:
         - RBRTE: Europe Brent Spot Price (USD/Barril)
-        - EER_EPD2D_PF4_RGC_DPG: U.S. Gulf Coast Ultra-Low Sulfur No 2 Diesel Spot Price (USD/Galão)
-        - EER_EPD2F_PF4_Y35NY_DPG: New York Harbor Ultra-Low Sulfur No 2 Diesel Spot Price (USD/Galão)
+        - EER_EPD2DXL0_PF4_RGC_DPG: U.S. Gulf Coast Ultra-Low Sulfur No 2 Diesel Spot Price (USD/Galão)
+        - EER_EPD2DXL0_PF4_Y35NY_DPG: New York Harbor Ultra-Low Sulfur No 2 Diesel Spot Price (USD/Galão)
         """
         endpoint = f"{self.BASE_URL}/petroleum/pri/spt/data/"
         params = {
@@ -68,10 +68,10 @@ class EIAClient:
         Regiões disponíveis: 'gulf_coast', 'ny_harbor'.
         """
         series_map = {
-            "gulf_coast": "EER_EPD2D_PF4_RGC_DPG",
-            "ny_harbor": "EER_EPD2F_PF4_Y35NY_DPG"
+            "gulf_coast": "EER_EPD2DXL0_PF4_RGC_DPG",
+            "ny_harbor": "EER_EPD2DXL0_PF4_Y35NY_DPG"
         }
-        series = series_map.get(region, "EER_EPD2D_PF4_RGC_DPG")
+        series = series_map.get(region, "EER_EPD2DXL0_PF4_RGC_DPG")
         df = self.get_petroleum_spot_prices(series=series, length=length)
         if not df.empty:
             df["product_name"] = f"US Diesel ({region.replace('_', ' ').title()})"
